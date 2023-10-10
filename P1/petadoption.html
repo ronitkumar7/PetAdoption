@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Pet Adoption Page Static</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body class="bg-info">
+  
+<div class="container.fluid">
+  <nav class="navbar navbar-expand-sm bg-primary">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link text-light" href="#">Applications</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="notifications.html">Notifications</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="#">Edit Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="#">Log Out</a>
+      </li>
+    </ul>  
+  </nav>
+
+  <h1 class="text-light text-center pt-5">PetPal</h1>
+
+  <!--"mx-auto d-block" centers the image-->
+  <img src="dog.jpg" class="rounded border mx-auto d-block mt-3 mb-5 pet-adoption-img">
+
+  <div class="container-sm bg-primary text-light text-center mt-5 mb-5 pt-3 pb-3 rounded-text-block">
+    <h3>PLEASE READ:</h3>
+
+    <p>Upon submition, your application will be put up for review by a PetPal representative, and you may be contacted to set up 
+        a follow-up interview to further discuss details about the process. To successfully adopt a pet, you will have to pay
+        a fee of an amount dependent on several factors &#40such as species, pet health, etc.&#41
+        You may only fill out one application for each pet. Submitting the application does not guarantee you will contacted 
+        about furthering the adoption process.</p>
+  </div>
+
+  <div class="container-sm bg-primary mb-5 rounded-text-block">
+    <h2 class="text-light text-center pt-3 sub-header">Adoption application for: Jing</h2>
+
+    <form class="pt-3 pb-3">
+        <label for="name" class="form-label text-light">Full name:</label>
+        <input type="text" class="form-control" placeholder="Write your full name here." id="name" name="name" required>
+
+        <label for="email" class="form-label text-light pt-3">Email:</label>
+        <input type="email" class="form-control" placeholder="Write your email address here." id="email" name="email" required>
+
+        <label for="phone-prim" class="form-label text-light pt-3">Phone:</label>
+        <input type="tel" class="form-control" placeholder="Write your primary phone number here." id="phone-prim" name="phone-prim" required>
+
+        <label for="phone-sec" class="form-label text-light pt-3">Phone 2:</label>
+        <input type="tel" class="form-control" placeholder="Write your secondary phone number here (Optional)." id="phone-sec" name="phone-sec">
+
+        <label for="reason" class="form-label text-light pt-3">Why do you want to adopt?</label>
+        <textarea class="form-control" placeholder="Write a short paragraph about what would make you a good caregiver." id="reason" name="reason" rows="3" required></textarea>
+
+        <label for="agreed" class="form-check-label text-light pt-3">
+          <input class="form-check-input" type="checkbox" id="agreed" name="agreed" required> I understand that I may be contacted in one of the above ways about my application, and that I have read and agreed to the terms written above this form.
+        </label>
+
+        <div>
+            <input type="submit" class="btn text-light btn-info mt-3" value="Submit" required>
+        </div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
