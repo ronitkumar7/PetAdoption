@@ -1,7 +1,104 @@
-body {
-    font-family: 'Courier New', monospace;
-}
 
 h1 {
-    font-weight: 700;
+font-weight: 700;
+font-size: 60px;
+} 
+body {
+font-family: 'Trebuchet MS', sans-serif;
+}
+
+.info-input {
+margin-left: 25%;
+width: 50%;
+height: 2rem;
+border: 0.5rem, solid;
+border-radius: 4px;
+font-size: 1.2rem;
+padding-left: 0.5rem;
+padding-right: 0.5rem;
+}
+
+.info-label {
+color: whitesmoke;
+margin-left: 25%;
+font-weight: 550;
+line-height: 2rem;
+font-size: 1.2rem;
+text-shadow: 1px 1px 1px #000, -1px -1px 1px #000, -1px 1px 1px #000, 1px -1px 1px #000;
+}
+
+#radio1-label1 {
+margin-left: 0%;
+line-height: 1.9rem;
+}
+#radio1-label2 {
+margin-left: 0%;
+line-height: 1.9rem;
+}
+
+.blue-button {
+margin: 1rem;
+margin-left: 25%;
+background-color: #0d6efd;
+color: white;
+width: 120px;
+height: 60px;
+border-radius: 5px;
+font-size: 1.5rem;
+}
+
+#search-bar{
+border-radius: 0.5rem;
+width: 100%
+}
+#search-btn{
+background-color: black;
+border-radius: 0.1rem;
+margin-right: 1rem;
+color: whitesmoke;
+}
+
+.form-check-label{
+margin-left: 0.5rem;
+margin-right: 2rem;
+font-size: 1.5rem;
+}
+.form-check-input{
+height: 1.5rem;
+width: 1.5rem;
+}
+.no-underline{
+text-decoration: none;
+}
+
+.unselected-sort{
+margin-left: 2rem;
+margin-right: 2rem;
+size: fit-content;
+font-size: larger;
+padding-left: 0.5rem;
+padding-right: 0.5rem;
+border-radius: 10%;
+}
+.selected-sort{
+margin-left: 2rem;
+margin-right: 2rem;
+size: fit-content;
+font-size: larger;
+padding-left: 0.5rem;
+padding-right: 0.5rem;
+border-radius: 10%;
+background-color: black;
+color: aliceblue;
+}
+.pet-profile-search{
+background-color: blue;
+max-width: 50%;
+margin: auto;
+border-radius: 10%;
+}
+.pet-profile-img-search{
+width: 100%;
+max-width: 15rem;
+height: auto;
 }
