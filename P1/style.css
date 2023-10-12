@@ -155,7 +155,7 @@ body {
     max-width: 700px;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 8px auto;
 }
 
 .chat-messages {
