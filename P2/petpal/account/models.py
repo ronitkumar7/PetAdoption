@@ -9,6 +9,6 @@ class Account(AbstractUser):
     phone_num = models.CharField(max_length=12, blank=True)
     location = models.CharField(max_length=200, blank=True)
     preferences = models.CharField(max_length=200, blank=True)
-    profile_pic = models.ImageField(upload_to='images/', blank=True)
+    profile_pic = models.ImageField(upload_to='profiles/', blank=True)
     mission_statement = models.TextField(blank=True)
 
