@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Search Page Static</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <head>
+		<title>Signup</title>
+	</head>
+</head>
+<body class="bg-info">
+  
+<div class="container.fluid">
+  <nav class="navbar navbar-expand-sm bg-primary">
+    <ul class="nav bg-primary me-auto">
+      <li class="nav-item">
+        <a class="nav-link text-light" href="application.html">Applications</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="notifications.html">Notifications</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="userupdate.html">Edit Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="login.html">Log Out</a>
+      </li>
+    </ul>  
+    <form class="d-flex">
+      <input type="text" placeholder="Search.." name="search" id="search-bar">
+      <a href="search_result.html">
+        <button type="button" id="search-btn">Submit</button>
+      </a>
+    </form>
+  </nav>
+  <h1 class="text-light text-center pt-3">PetPal</h1>
+  <div>
+    <h2 class="text-center pt-3">Search by:</h2>
+    <br>
+    <h4 class="text-center mb-3">Check the boxes you wish to search by</h4>
+  </div>
+  <form action="/action_page.php" class="d-flex justify-content-center flex-wrap">
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input FCI" id="check1" name="option1" value="something" checked>
+      <label class="form-check-label FCL" for="check1"> location</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input FCI" id="check2" name="option2" value="something">
+      <label class="form-check-label FCL" for="check2">breed</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input FCI">
+      <label class="form-check-label FCL">age</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input FCI">
+      <label class="form-check-label FCL">size</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input FCI">
+      <label class="form-check-label FCL">color</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input FCI">
+      <label class="form-check-label FCL">gender</label>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>
