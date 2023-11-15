@@ -27,7 +27,7 @@ class ShelterListCreate(ListCreateAPIView):
     
     def perform_create(self, serializer):
         password = serializer.validated_data.pop('password')     
-        serializer.save(seeker_or_shelter=True, password = make_password(password))
+        serializer.save(seeker_or_shelter=False, password = make_password(password))
 
 class ShelterRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     serializer_class = ShelterSerializer
