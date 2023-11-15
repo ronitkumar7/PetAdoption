@@ -7,6 +7,7 @@ class SeekerSerializer(ModelSerializer):
         model = Account
         exclude = ["mission_statement", "seeker_or_shelter"]
 
+
 class ShelterSerializer(ModelSerializer):
     class Meta:
         model = Account

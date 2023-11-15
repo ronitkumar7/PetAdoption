@@ -6,15 +6,14 @@ from .models import Account
 from django.contrib.auth.models import User
 from .serializers import SeekerSerializer, ShelterSerializer
 from django.http import HttpResponse, HttpResponseBadRequest
+from django.contrib.auth.hashers import make_password
 
 class SeekerCreate(CreateAPIView):
     serializer_class = SeekerSerializer
     permission_classes = [AllowAny]
     def perform_create(self, serializer):
-        # user = User.objects.create_user(
-        #     serializer
-        # )        
-        serializer.save(seeker_or_shelter=True)
+        password = serializer.validated_data.pop('password')     
+        serializer.save(seeker_or_shelter=True, password = make_password(password))
 
 
 class ShelterListCreate(ListCreateAPIView):
