@@ -8,7 +8,7 @@ class PendingShelterApplicationSerializer(ModelSerializer):
         fields = '__all__'
         read_only_fields = ['owner', 'petlisting', 'shelter', 'applicant', 'email', 'phone1', 'phone2', 'description', 'creation_time', 'last_update_time']
 
-class PendingSeekerApplicationSerializer(ModelSerializer): 
+class PendingAcceptedSeekerApplicationSerializer(ModelSerializer): 
     status = ChoiceField(['WITHDRAWN'])  
     class Meta:
         model = Application

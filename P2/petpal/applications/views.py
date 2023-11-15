@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.generics import RetrieveUpdateAPIView, ListCreateAPIView
 from .models import Application
 from account.models import Account
-from .serializers import PendingShelterApplicationSerializer, PendingSeekerApplicationSerializer, UserApplicationSerializer, OtherApplicationSerializer
+from .serializers import PendingShelterApplicationSerializer, PendingAcceptedSeekerApplicationSerializer, UserApplicationSerializer, OtherApplicationSerializer
 from django.core.exceptions import PermissionDenied
 
 # Create your views here.
@@ -16,8 +16,13 @@ class ApplicationsRetrieveUpdate(RetrieveUpdateAPIView):
 
         if application.status == 'PENDING':
             if self.request.user.seeker_or_shelter == True:
-                return PendingSeekerApplicationSerializer
+                return PendingAcceptedSeekerApplicationSerializer
             return PendingShelterApplicationSerializer
+        
+        if application.status == 'ACCEPTED':
+            if self.request.user.seeker_or_shelter == True:
+                return PendingAcceptedSeekerApplicationSerializer
+
         return OtherApplicationSerializer
 
     def get_object(self):
