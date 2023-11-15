@@ -19,8 +19,12 @@ class SeekerCreate(CreateAPIView):
 
 class ShelterListCreate(ListCreateAPIView):
     serializer_class = ShelterSerializer
+    permission_classes = [AllowAny]
     def get_queryset(self):
-        return Account.objects.filter(seeker_or_shelter=False)
+        if self.request.user.is_authenticated:
+            return Account.objects.filter(seeker_or_shelter=False)
+        else:
+            return HttpResponseBadRequest("Unauthorized")
     
     def perform_create(self, serializer):
         serializer.save(seeker_or_shelter=False)
