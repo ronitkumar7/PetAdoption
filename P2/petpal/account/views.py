@@ -6,6 +6,7 @@ from .models import Account
 from django.contrib.auth.models import User
 from .serializers import SeekerSerializer, ShelterSerializer
 from django.http import HttpResponse, HttpResponseBadRequest
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth.hashers import make_password
 
 class SeekerCreate(CreateAPIView):
@@ -23,7 +24,7 @@ class ShelterListCreate(ListCreateAPIView):
         if self.request.user.is_authenticated:
             return Account.objects.filter(seeker_or_shelter=False)
         else:
-            return HttpResponseBadRequest("Unauthorized")
+            raise PermissionDenied()
     
     def perform_create(self, serializer):
         password = serializer.validated_data.pop('password')     
@@ -36,9 +37,9 @@ class ShelterRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
         user = get_object_or_404(Account, username=self.request.user)
         if self.request.method == "GET":
             return shelter
-        if user.username == shelter.username:
+        if not shelter.seeker_or_shelter and user.username == shelter.username:
             return shelter
-        return HttpResponseBadRequest("Unauthorized")
+        raise PermissionDenied()
 
 class SeekerRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     serializer_class = SeekerSerializer
@@ -52,7 +53,7 @@ class SeekerRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
                 for app in application:
                     if app.owner.username == seeker.username:
                         return seeker
-        elif user.username == seeker.username:
+        elif seeker.seeker_or_shelter and user.username == seeker.username:
             return seeker
         
-        return HttpResponseBadRequest("Unauthorized")
+        raise PermissionDenied()

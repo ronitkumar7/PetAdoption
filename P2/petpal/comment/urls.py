@@ -5,8 +5,8 @@ from .views import CommentListCreateApplication, ReplyCreate, CommentListCreateR
 app_name="comments"
 urlpatterns = [
     path('app/<int:pk>/comments/',CommentListCreateApplication.as_view() , name='app_comments'),
-    path('comment/<int:pk>/',ReplyCreate.as_view() , name='reply'),
-    path('shelter/<int:pk>/reviews',CommentListCreateReview.as_view() , name='shelter_comments'),
+    path('<int:pk>/',ReplyCreate.as_view() , name='reply'),
+    path('shelter/<int:pk>/reviews/',CommentListCreateReview.as_view() , name='shelter_comments'),
 
 
 ]
