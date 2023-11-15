@@ -4,7 +4,7 @@ from .models import PetListing
 
 class BasePetListingSerializer(ModelSerializer):
     created_date = DateTimeField(read_only=True)
-    status = ChoiceField(['PENDING', 'ACCEPTED', 'DENIED', 'WITHDRAWN'])
+    status = ChoiceField(['PENDING', 'AVAILABLE', 'ADOPTED', 'WITHDRAWN'])
    
     class Meta:
         model = PetListing
