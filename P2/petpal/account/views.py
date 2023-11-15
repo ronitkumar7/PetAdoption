@@ -26,7 +26,8 @@ class ShelterListCreate(ListCreateAPIView):
             return HttpResponseBadRequest("Unauthorized")
     
     def perform_create(self, serializer):
-        serializer.save(seeker_or_shelter=False)
+        password = serializer.validated_data.pop('password')     
+        serializer.save(seeker_or_shelter=True, password = make_password(password))
 
 class ShelterRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     serializer_class = ShelterSerializer
