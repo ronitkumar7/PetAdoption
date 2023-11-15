@@ -1,1 +1,1 @@
-.manage.py runserver
+python3 /petpal/manage.py runserver
