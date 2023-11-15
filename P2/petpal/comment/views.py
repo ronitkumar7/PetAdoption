@@ -15,7 +15,8 @@ class CommentListCreateApplication(ListCreateAPIView):
         user = get_object_or_404(Account, username=self.request.user)
         app_id=self.kwargs['pk']
         application = get_object_or_404(Application, id=self.kwargs['pk'])
-        query_set = application.objects.comments_set.all()
+        application.save()
+        query_set = application.comments_set.all()
         query_set = query_set.order_by("-create_time")
         if application.owner.username == user.username:
             return query_set
@@ -56,7 +57,7 @@ class CommentListCreateReview(ListCreateAPIView):
         user = get_object_or_404(Account, username=self.request.user)
         shelter_id=self.kwargs['pk']
         shelter = get_object_or_404(Account, id=self.kwargs['pk'])
-        query_set = shelter.objects.shelter.all()
+        query_set = shelter.shelter.all()
         query_set = query_set.order_by("-create_time")
         return query_set
 
