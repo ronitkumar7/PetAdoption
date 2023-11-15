@@ -1,10 +1,10 @@
-from rest_framework.serializers import ModelSerializer, DateTimeField, ListField, PrimaryKeyRelatedField, Choicefield
+from rest_framework.serializers import ModelSerializer, DateTimeField, ListField, PrimaryKeyRelatedField, ChoiceField
 from rest_framework import serializers
 from .models import PetListing
 
 class BasePetListingSerializer(ModelSerializer):
     created_date = DateTimeField(read_only=True)
-    status = Choicefield(['PENDING', 'ACCEPTED', 'DENIED', 'WITHDRAWN'])
+    status = ChoiceField(['PENDING', 'ACCEPTED', 'DENIED', 'WITHDRAWN'])
    
     class Meta:
         model = PetListing

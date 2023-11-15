@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from account.models import Account
 # from listings.models import PetListing
 
 # Create your models here.
 class Application(models.Model):
-    owner = models.ForeignKey(User, related_name="applications", on_delete=models.CASCADE)
+    owner = models.ForeignKey(Account, related_name="applications", on_delete=models.CASCADE)
     # petlisting = models.ForeignKey(PetListing, related_name="applications", on_delete=models.CASCADE)
     applicant = models.CharField(max_length=100)
     email = models.EmailField()

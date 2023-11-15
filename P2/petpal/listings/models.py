@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from account.models import Account
 
 # Create your models here.
 class PetListing(models.Model):
@@ -13,7 +14,7 @@ class PetListing(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=40, null=True, blank=True)
 
-    shelter = models.ForeignKey(User, related_name='listings', 
+    shelter = models.ForeignKey(Account, related_name='listings', 
                               null=True, on_delete=models.CASCADE,
                               blank=True)
 
