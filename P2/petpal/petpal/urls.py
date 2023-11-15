@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('accounts/', include('account.urls', namespace='accounts')),
-    #path('comments/', include('comment.urls', namespace='comments')),
+    path('comments/', include('comment.urls', namespace='comments')),
     path('api/', include('api.urls')),
     path('applications/', include('applications.urls', namespace='applications')),
     path('notifications/', include('notifications.urls', namespace='notifications')),
