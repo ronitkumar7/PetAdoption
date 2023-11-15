@@ -1,6 +1,5 @@
 """
 URL configuration for petpal project.
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
 Examples:
@@ -18,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
 urlpatterns = [
     path('accounts/', include('account.urls', namespace='accounts')),
     path('comments/', include('comment.urls', namespace='comments')),
