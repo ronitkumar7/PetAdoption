@@ -35,7 +35,8 @@ class CommentListCreateApplication(ListCreateAPIView):
         elif application.petlisting.shelter.username == user.username:
             application.save()
             serializer.save(user=user,  application=application)
-        raise PermissionDenied()
+        else:
+            raise PermissionDenied()
 
 class ReplyCreate(CreateAPIView):
     serializer_class = CommentSerializer
@@ -51,7 +52,8 @@ class ReplyCreate(CreateAPIView):
                 serializer.save(user=user, application=application, reply=comment)
             elif application.petlisting.shelter.username == user.username:
                 serializer.save(user=user,  application=application, reply=comment)
-            raise PermissionDenied()
+            else:
+                raise PermissionDenied()
 
 
 class CommentListCreateReview(ListCreateAPIView):

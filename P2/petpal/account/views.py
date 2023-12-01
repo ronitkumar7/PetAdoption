@@ -8,6 +8,7 @@ from .serializers import SeekerSerializer, ShelterSerializer
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.hashers import make_password
+from listings.models import PetListing
 
 class SeekerCreate(CreateAPIView):
     serializer_class = SeekerSerializer
@@ -47,10 +48,10 @@ class SeekerRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
         seeker =  get_object_or_404(Account, id=self.kwargs['pk'])
         user = get_object_or_404(Account, username=self.request.user)
         if self.request.method == "GET" and not user.seeker_or_shelter:
-            listings = User.petlisting_set.all()
-            for lis in listing:
-                applications = PetListing.objects.get(id=lis.id).application_set.all()
-                for app in application:
+            listings = user.listings.all()
+            for lis in listings:
+                applications = PetListing.objects.get(id=lis.id).applications.all()
+                for app in applications:
                     if app.owner.username == seeker.username:
                         return seeker
         elif seeker.seeker_or_shelter and user.username == seeker.username:
