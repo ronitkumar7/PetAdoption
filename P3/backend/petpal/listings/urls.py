@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.UserPetListingsListCreate.as_view()),
     path('<int:pk>/', views.UserPetListingsUpdateDestroy.as_view()),
 
+    path('filters/', views.PetListingsSearch.as_view()),
     path('filters/<str:filter1>/<str:keyword>', views.PetListingsSearch.as_view()),
     path('filters/<str:filter1>/<str:keyword>/results/<str:sort1>', views.PetListingsSearch.as_view()),
     path('filters/<str:filter1>/<str:keyword>/results/<str:sort1>/<str:sort2>', views.PetListingsSearch.as_view()),

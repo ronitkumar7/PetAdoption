@@ -32,20 +32,26 @@ class UserPetListingsUpdateDestroy(RetrieveUpdateDestroyAPIView):
         else: raise PermissionDenied("This Listing Does Not Belong To You")
     
 class PetListingsSearch(ListAPIView):
-    serializer_class = BasePetListingSerializer
+    serializer_class = UserPetListingSSerializer
 
     def get_queryset(self):
         queryset = PetListing.objects.all()
         keyword = self.kwargs.get('keyword')
-        filter1 = self.kwargs.get('filter1')
-        filter2 = self.kwargs.get('filter2')
-        filter3 = self.kwargs.get('filter3')
-        filter4 = self.kwargs.get('filter4')
+        filter1 = self.request.GET.get('filter1', '')
+        fKeyword1 = self.request.GET.get('fKeyword1', '')
+        filter2 = self.request.GET.get('filter2', '')
+        fKeyword2 = self.request.GET.get('fKeyword2', '')
+        filter3 = self.request.GET.get('filter3', '')
+        fKeyword3 = self.request.GET.get('fKeyword3', '')
+        filter4 = self.request.GET.get('filter4', '')
+        fKeyword4 = self.request.GET.get('fKeyword4', '')
         statusNotFiltered = True
-        for filter in [filter1, filter2, filter3, filter4]:
+        for pair in [(filter1, fKeyword1), (filter2, fKeyword2), (filter3, fKeyword3), (filter4, fKeyword4)]:
+            filter = pair[0]
+            keyword = pair[1]
             if filter:
                 if filter.lower() in ["shelter", "status", "breed", "gender",]:
-                    if filter.lower() == "shelter": queryset = queryset.filter(shelter__icontains=keyword)
+                    if filter.lower() == "shelter": queryset = queryset.filter(shelter__username__icontains=keyword)
                     elif filter.lower() == "status": 
                         queryset = queryset.filter(status=keyword)
                         statusNotFiltered = False
@@ -54,8 +60,8 @@ class PetListingsSearch(ListAPIView):
                 else:
                     raise PermissionDenied(f"Invalid Filter, must be one of: shelter, status, breed, gender")
         if statusNotFiltered: queryset = queryset.filter(status="AVAILABLE")
-        sort1 = self.kwargs.get('sort1')
-        sort2 = self.kwargs.get('sort2')    
+        sort1 = self.request.GET.get('sort1', '') 
+        sort2 = self.request.GET.get('sort2', '') 
         for sort in [sort1, sort2]:
             if sort:
                 if sort.lower() in ["age", "name"]:

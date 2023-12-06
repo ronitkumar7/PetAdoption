@@ -13,4 +13,5 @@ class BasePetListingSerializer(ModelSerializer):
 
 class UserPetListingSSerializer(BasePetListingSerializer):
     shelter = PrimaryKeyRelatedField(read_only=True)
+    shelter_username = serializers.CharField(source='shelter.username', read_only=True)
 
