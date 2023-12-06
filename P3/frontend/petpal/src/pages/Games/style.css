@@ -1,0 +1,12 @@
+.checkbox-group {
+    display: flex;
+    column-gap: 1em;
+}
+
+.checkbox-group label {
+    padding: 1em 0;
+}
+
+.checkbox-group [type="checkbox"] {
+    transform: translateY(2px);
+}

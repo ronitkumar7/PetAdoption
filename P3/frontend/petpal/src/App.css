@@ -1,0 +1,36 @@
+label, p {
+    text-align: left;
+}
+
+input {
+    margin-left: 0.5em;
+    padding: 2px 0.2em;
+}
+
+button {
+    padding: 0.2em 0.5em;
+    margin-right: 0.5em;
+}
+
+th, td {
+    padding: 2px 0.5em; 
+}
+
+th {
+    text-align: center;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1em;
+}
+
+dt {
+    text-align: right;
+}
