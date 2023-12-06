@@ -28,7 +28,7 @@ class UserNotificationsListCreate(ListCreateAPIView):
         if filter_val.lower() == 'read':
             set = set.filter(state='read')
         elif filter_val.lower() == 'unread':
-            set = set.filter(status='unread')
+            set = set.filter(state='unread')
         
         if sort_by.lower() == 'creation_time':
             set = set.order_by('creation_time')
@@ -36,4 +36,4 @@ class UserNotificationsListCreate(ListCreateAPIView):
         return set
 
     def perform_create(self, serializer):
-        notification = Notification.objects.create(**serializer.validated_data, state='unread', owner=self.request.user)
+        notification = Notification.objects.create(**serializer.validated_data, state='unread')

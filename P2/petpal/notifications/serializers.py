@@ -16,7 +16,6 @@ class UnreadNotificationSerializer(ModelSerializer):
         read_only_fields = ['owner', 'creation_time', 'message', 'link']
 
 class UserNotificationSerializer(ModelSerializer):
-    owner = PrimaryKeyRelatedField(read_only=True)
     state = ChoiceField(['unread'], read_only=True)
 
     class Meta:

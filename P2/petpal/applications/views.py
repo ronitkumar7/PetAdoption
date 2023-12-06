@@ -64,4 +64,6 @@ class UserApplicationsListCreate(ListCreateAPIView):
             raise PermissionDenied()
         elif serializer.validated_data['petlisting'].status != 'AVAILABLE':
             raise PermissionDenied()
+        elif Application.objects.filter(petlisting=serializer.validated_data['petlisting'], owner=self.request.user):
+            raise PermissionDenied()
         application = Application.objects.create(**serializer.validated_data, status='PENDING', shelter=serializer.validated_data['petlisting'].shelter, owner=self.request.user)
