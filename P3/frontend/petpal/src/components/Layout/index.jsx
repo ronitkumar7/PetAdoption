@@ -47,7 +47,7 @@ const Layout = () => {
                         <Link to="/Notifications" className="nav-link text-light">Notifications</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/games" className="nav-link text-light">Games</Link>
+                        <Link to="/blogs" className="nav-link text-light">Blogs</Link>
                     </li>
                     <li className="nav-item">
                         <div className="nav-link text-light">Hello, {userName}</div>

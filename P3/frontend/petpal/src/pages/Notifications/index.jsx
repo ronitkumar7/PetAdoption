@@ -15,7 +15,7 @@ function Notifications() {
         const { limit, offset } = query;
         fetch(`http://127.0.0.1:8000/notifications/?limit=${limit}&offset=${offset}&sort=creation_time`, {
           headers: {
-            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxOTkwODgzLCJpYXQiOjE3MDE5MDQ0ODMsImp0aSI6IjYzYjNjMjlmNjNlZDQ0MTA5NDdlNzljYjcxOTY4YjdlIiwidXNlcl9pZCI6MX0.nfzGLKFq91QxFV8iGz8kUlFzs7lG8cGm1eHScKQkhng"
+            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDA4NDgxLCJpYXQiOjE3MDE5MjIwODEsImp0aSI6IjQ3ODkwNjI4MmU4OTQ4Yzg4MGRlYmNkYzIzNjQ0MjRlIiwidXNlcl9pZCI6MX0.tkOOe3ibt-woQmehLZtYxsJf5pyDqb8IU2R-TnQ5ALQ"
           }
         })
         .then(response => response.json())
@@ -31,7 +31,7 @@ function Notifications() {
         method: "PATCH",
         headers: {
           'Content-Type': 'application/json',
-          "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxOTkwODgzLCJpYXQiOjE3MDE5MDQ0ODMsImp0aSI6IjYzYjNjMjlmNjNlZDQ0MTA5NDdlNzljYjcxOTY4YjdlIiwidXNlcl9pZCI6MX0.nfzGLKFq91QxFV8iGz8kUlFzs7lG8cGm1eHScKQkhng"
+          "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDA4NDgxLCJpYXQiOjE3MDE5MjIwODEsImp0aSI6IjQ3ODkwNjI4MmU4OTQ4Yzg4MGRlYmNkYzIzNjQ0MjRlIiwidXNlcl9pZCI6MX0.tkOOe3ibt-woQmehLZtYxsJf5pyDqb8IU2R-TnQ5ALQ"
         },
         body: JSON.stringify({
             'state': 'read',
