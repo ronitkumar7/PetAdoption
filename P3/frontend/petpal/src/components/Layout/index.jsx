@@ -35,19 +35,32 @@ const Layout = () => {
 
     return <>
         <header>
-            <div>
-                <Link to="/" className={url === "/" ? "active" : ""}>Home</Link>
-                <Link to="/petListings" className={url.startsWith("/petListings") ? "active" : ""}>Pet Listings</Link>
-                <Link to="/teams" className={url.startsWith("/teams") ? "active" : ""}>Teams</Link>
-                <Link to="/games" className={url.startsWith("/games") ? "active" : ""}>Games</Link>
-            </div>
-            <div>Hello, {userName}</div>
+            <nav className="navbar navbar-expand-sm bg-primary">
+                <ul className="nav">
+                    <li className="nav-item">
+                        <Link to="/" className="nav-link text-light">Home</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/petListings" className="nav-link text-light">Pet Listings</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/Notifications" className="nav-link text-light">Notifications</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/games" className="nav-link text-light">Games</Link>
+                    </li>
+                    <li className="nav-item">
+                        <div className="nav-link text-light">Hello, {userName}</div>
+                    </li>
+                </ul>
+            </nav>
         </header>
-        <main>
+        <main className="p-5">
+            <h1 className="text-dark text-center m-0">PetPal</h1>
             <Outlet />
         </main>
-        <footer>
-            &copy; CSC309 Lecture 14c, {semester} {today.getFullYear()}.
+        <footer className="bg-primary">
+            <div className="text-light text-center">&copy; CSC309 Lecture 14c, {semester} {today.getFullYear()}.</div>
         </footer>
     </>;
 }

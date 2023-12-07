@@ -5,7 +5,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import { APIContext, useAPIContext } from './contexts/APIContext';
 import NotFound from './pages/NotFound';
-import Teams from './pages/Teams';
+import Notifications from './pages/Notifications';
 import Team from './pages/Team';
 import Games from './pages/Games';
 
@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="petListings" element={<PetListings />} />
-          <Route path="teams" element={<Teams />} />
+          <Route path="Notifications" element={<Notifications />} />
           <Route path="teams/:teamID" element={<Team />} />
           <Route path="games" element={<Games />} />
           <Route path="*" element={<NotFound />} />
