@@ -55,15 +55,35 @@ function ApplicationComments() {
       })
         .then(response => {
           if (response.ok){
-          return response.json();
-      }else{
-          throw new Error("hi");
-      }
+            fetch(`http://127.0.0.1:8000/applications/${appId}/`, {
+              headers: {
+                "Authorization": "Bearer " + localStorage.getItem('apiToken')
+              }
+            })
+            .then(subresponse => subresponse.json())
+            .then(json => {
+              fetch(`http://127.0.0.1:8000/notifications/`, {
+                method: "POST",
+                headers: {
+                  'Content-Type': 'application/json',
+                  "Authorization": "Bearer " + localStorage.getItem('apiToken')
+              },
+                body: JSON.stringify({
+                    'owner': json.owner,
+                    'message': 'A comment was created on your application.',
+                    'link': `http://127.0.0.1:3000/application/${appId}/comments`
+                })
+              })        
+              .then(() => {
+                document.location.reload();
+              });
+            });
+  
+          }else{
+              throw new Error("hi");
+          }
         })
-        
-        .then(() => {
-          document.location.reload();
-        }).catch(() => {
+        .catch(() => {
           const error_id = `error${commentId}`;
           document.getElementById(error_id).innerText = "Comment Reply failed."
           
@@ -86,15 +106,35 @@ function ApplicationComments() {
     })
       .then(response => {
         if (response.ok){
-        return response.json();
-    }else{
-        throw new Error("hi");
-    }
+          fetch(`http://127.0.0.1:8000/applications/${appId}/`, {
+            headers: {
+              "Authorization": "Bearer " + localStorage.getItem('apiToken')
+            }
+          })
+          .then(subresponse => subresponse.json())
+          .then(json => {
+            fetch(`http://127.0.0.1:8000/notifications/`, {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer " + localStorage.getItem('apiToken')
+            },
+              body: JSON.stringify({
+                  'owner': json.owner,
+                  'message': 'A comment was created on your application.',
+                  'link': `http://127.0.0.1:3000/application/${appId}/comments`
+              })
+            })
+            .then(() => {
+              document.location.reload();
+            });
+          });
+
+        }else{
+            throw new Error("hi");
+        }
       })
-      
-      .then(() => {
-        document.location.reload();
-      }).catch(() => document.getElementById("error_create").innerText = "Comment Creation failed.");
+      .catch(() => document.getElementById("error_create").innerText = "Comment Creation failed.");
 }
 
 
