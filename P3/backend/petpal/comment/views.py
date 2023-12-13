@@ -20,7 +20,7 @@ class CommentListCreateApplication(ListCreateAPIView):
         
         if application.owner.username == user.username or application.shelter.username == user.username:
             query_set = application.comment_set.all()
-            query_set = query_set.order_by("-create_time")
+            query_set = query_set.order_by("create_time")
             return query_set
 
         raise PermissionDenied()
@@ -63,7 +63,7 @@ class CommentListCreateReview(ListCreateAPIView):
         shelter_id=self.kwargs['pk']
         shelter = get_object_or_404(Account, id=self.kwargs['pk'])
         query_set = shelter.shelter.all()
-        query_set = query_set.order_by("-create_time")
+        query_set = query_set.order_by("create_time")
         return query_set
 
     def perform_create(self, serializer):

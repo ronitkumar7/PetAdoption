@@ -6,6 +6,7 @@ class Comment(models.Model):
     text = models.TextField()
     user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="author")
     create_time = models.DateTimeField(auto_now_add=True)
+    rating = models.IntegerField(blank=True, null=True)
     shelter = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True, related_name="shelter")
     application = models.ForeignKey(Application, on_delete=models.CASCADE, null=True, blank=True)
     reply = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)

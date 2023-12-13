@@ -14,6 +14,7 @@ class Account(AbstractUser):
     preferences = models.CharField(max_length=200, blank=True)
     profile_pic = models.ImageField(upload_to='profiles/', blank=True)
     mission_statement = models.TextField(blank=True)
+    shelter_name = models.TextField(blank=True)
 
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
 

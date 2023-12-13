@@ -1,0 +1,14 @@
+.hidden{
+    display: none;
+}
+
+.present{
+    display:flexbox;
+    padding: 5px;
+}
+.h5{
+    padding:5%;
+}
+p{
+    color:red;
+}

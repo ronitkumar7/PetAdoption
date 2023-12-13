@@ -1,0 +1,13 @@
+.blog-body {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.hidden{
+    display: none;
+}
+
+.present{
+    display:flexbox;
+    padding: 5px;
+}

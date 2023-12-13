@@ -1,10 +1,7 @@
-import { useContext } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom"
-import { APIContext } from "../../contexts/APIContext";
 import './style.css';
 
 const Layout = () => {
-    const { userName } = useContext(APIContext);
     const location = useLocation();
     const url = location.pathname;
     const today = new Date();
@@ -38,7 +35,7 @@ const Layout = () => {
             <nav className="navbar navbar-expand-sm bg-primary">
                 <ul className="nav">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link text-light">Home</Link>
+                        <Link to="/" className="nav-link text-light">Sign Up</Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/petListings" className="nav-link text-light">Pet Listings</Link>
@@ -47,10 +44,16 @@ const Layout = () => {
                         <Link to="/Notifications" className="nav-link text-light">Notifications</Link>
                     </li>
                     <li className="nav-item">
+                        <Link to="/shelters" className="nav-link text-light">Shelters</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link to="/blogs" className="nav-link text-light">Blogs</Link>
                     </li>
                     <li className="nav-item">
-                        <div className="nav-link text-light">Hello, {userName}</div>
+                    <Link to="/currProfile" className="nav-link text-light">{localStorage.getItem("userName")} Profile</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/login" className="nav-link text-light">Login</Link>
                     </li>
                 </ul>
             </nav>
@@ -60,7 +63,7 @@ const Layout = () => {
             <Outlet />
         </main>
         <footer className="bg-primary">
-            <div className="text-light text-center">&copy; CSC309 Lecture 14c, {semester} {today.getFullYear()}.</div>
+            <div className="text-light text-center">PetPal</div>
         </footer>
     </>;
 }
