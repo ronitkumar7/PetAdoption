@@ -110,10 +110,8 @@ function ShelterComments() {
           {comments.map(comment => (
             <div className="cotainer-sm bg-info m-3 p-3 rounded" key={comment.id}>
                 <h5 className="text-light notification-header">Comment {comment.id}</h5>
-                {comment.shelter === shelId && 
-                  <h5 className="text-light notification-header"> By Reviewed Shelter</h5>
-                }
-                 {comment.rating &&
+
+                {comment.rating &&
                 <h5 className="text-light notification-header">Rating: {comment.rating}</h5>
                  }
                 <p className="text-light ">{comment.text}</p>
@@ -128,8 +126,8 @@ function ShelterComments() {
             <h2 className="text-light sub-header pb-2">Reply</h2>
             <div className="mb-2">
                 <textarea placeholder="Write your reply here." className="form-input rounded" id={`body${comment.id}`} rows="4" />
-                <h5 className="text-light sub-header pb-2">Rating (0-5 stars)</h5>
-                <input type="number" id={`rating${comment.id}`}  min="0" max="5" />
+                <h5 className="text-light sub-header pb-2">Rating (1-5 stars)</h5>
+                <input type="number" id={`rating${comment.id}`}  min="1" max="5" />
             </div>
             <div>
                 <button className="text-light bg-info border-0 rounded" onClick={() => createReply(comment.id)}>Submit</button>
@@ -144,8 +142,8 @@ function ShelterComments() {
             <div className="mb-2">
                 <textarea placeholder="Write your comment here." className="form-input rounded" id="text" rows="4" />
 
-                <h5 className="text-light sub-header pb-2">Rating (0-5 stars)</h5>
-                <input type="number" id="rating"  min="0" max="5" />
+                <h5 className="text-light sub-header pb-2">Rating (1-5 stars)</h5>
+                <input type="number" id="rating"  min="1" max="5" />
             </div>
             
             <div>
