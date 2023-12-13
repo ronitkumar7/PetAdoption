@@ -1,24 +1,32 @@
 import { useState, useEffect} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './style.css';
 
 function Blogs() {
+  let navigate = useNavigate();
     const [ query, setQuery ] = useState({limit: 5, offset: 0});
     const [ blogs, setBlogs ] = useState([]);
     const [ isNext, setIsNext ] = useState(false);
     const [ isPrev, setIsPrev ] = useState(false);
     
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/blogs/all/?limit=${query.limit}&offset=${query.offset}`)
-        .then(response => response.json())
-        .then(json => {
-            setIsNext(json.next !== null);
-            setIsPrev(json.previous !== null);
-            setBlogs(json.results);
-        });
+      fetch(`http://127.0.0.1:8000/blogs/all/?limit=${query.limit}&offset=${query.offset}`)
+      .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("Not Found");
+        }
+      })
+      .then(json => {
+          setIsNext(json.next !== null);
+          setIsPrev(json.previous !== null);
+          setBlogs(json.results);
+      })
+      .catch(() => navigate('/*'));
     }, [ query ]);
 
-    return <>
+    return <div className="bloglist">
         <div className="container-sm bg-primary mt-5 mb-5 p-3 rounded">
           <h2 className="text-light sub-header">Blog Posts:</h2>
 
@@ -46,10 +54,11 @@ function Blogs() {
             : <></> }
           </p>
         </div>
-    </>;
+    </div>;
 }
 
 function BlogsPersonal() {
+  let navigate = useNavigate();
   const [ query, setQuery ] = useState({limit: 5, offset: 0});
   const [ blogs, setBlogs ] = useState([]);
   const [ isNext, setIsNext ] = useState(false);
@@ -58,18 +67,25 @@ function BlogsPersonal() {
   useEffect(() => {
       fetch(`http://127.0.0.1:8000/blogs/?limit=${query.limit}&offset=${query.offset}`, {
         headers: {
-          "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDY3NjU2LCJpYXQiOjE3MDE5ODEyNTYsImp0aSI6IjJkNDg5NmRjZDMyMTQ2YWM4ODJlZTRlNDMxMDA4OGE1IiwidXNlcl9pZCI6MX0.HG6Q_4mUou5u_fhH2Lbv1EQPy30G970jHdMXOXo_7UA"
+          "Authorization": "Bearer " + localStorage.getItem('apiToken')
         }
       })
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("Not Found");
+        }
+      })
       .then(json => {
           setIsNext(json.next !== null);
           setIsPrev(json.previous !== null);
           setBlogs(json.results);
-      });
+      })
+      .catch(() => navigate('/*'));
   }, [ query ]);
 
-  return <>
+  return <div className="bloglist">
       <div className="container-sm bg-primary mt-5 mb-5 p-3 rounded">
         <h2 className="text-light sub-header">Your Blog Posts:</h2>
 
@@ -97,7 +113,7 @@ function BlogsPersonal() {
           : <></> }
         </p>
       </div>
-  </>;
+  </div>;
 }
 
 export { Blogs, BlogsPersonal };

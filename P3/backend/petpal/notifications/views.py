@@ -36,4 +36,5 @@ class UserNotificationsListCreate(ListCreateAPIView):
         return set
 
     def perform_create(self, serializer):
-        notification = Notification.objects.create(**serializer.validated_data, state='unread')
+        if not serializer.validated_data['owner'].preferences == 'None':
+            notification = Notification.objects.create(**serializer.validated_data, state='unread')
