@@ -138,7 +138,7 @@ function BlogPersonal() {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('apiToken')
             }
-        }).then(() => setQuery({...query}));
+        }).then(() => navigate('/blogs/personal'));
     };
 
     return <>

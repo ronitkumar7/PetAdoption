@@ -56,7 +56,19 @@ function ShelterComments() {
       })
         .then(response => {
           if (response.ok){
-          return response.json();
+            fetch(`http://127.0.0.1:8000/notifications/`, {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer " + localStorage.getItem('apiToken')
+            },
+              body: JSON.stringify({
+                  'owner': shelId,
+                  'message': 'A comment was created on your profile.',
+                  'link': `http://127.0.0.1:3000/shelter/${shelId}/comments`
+              })
+            })
+            .then(() => response.json());
       }else{
           throw new Error("hi");
       }
@@ -87,8 +99,20 @@ function ShelterComments() {
         body:formdata
     })
       .then(response => {
-        if (response.ok){
-        return response.json();
+        if (response.ok){            
+          fetch(`http://127.0.0.1:8000/notifications/`, {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json',
+              "Authorization": "Bearer " + localStorage.getItem('apiToken')
+          },
+            body: JSON.stringify({
+                'owner': shelId,
+                'message': 'A comment was created on your profile.',
+                'link': `http://127.0.0.1:3000/shelter/${shelId}/comments`
+            })
+          })
+          .then(() => response.json());
     }else{
         throw new Error("hi");
     }

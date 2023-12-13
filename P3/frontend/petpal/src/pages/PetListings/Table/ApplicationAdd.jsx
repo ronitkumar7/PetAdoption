@@ -46,7 +46,19 @@ function ApplicationAdd({show, setShow, pet}) {
             "phone1": phone1,
             "phone2": phone2
         }),
-        }).then((response) => {
+        }).then((response) => {                
+            fetch(`http://127.0.0.1:8000/notifications/`, {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json',
+              "Authorization": "Bearer " + localStorage.getItem('apiToken')
+          },
+            body: JSON.stringify({
+                'owner': pet.shelter,
+                'message': 'An applicaton has been created.',
+                'link': `http://127.0.0.1:3000/Applications`
+            })
+          });
             response.json()
             console.log(response)})
         .catch(error => console.error('Error:', error));

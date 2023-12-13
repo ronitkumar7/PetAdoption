@@ -11,3 +11,7 @@
     display:flexbox;
     padding: 5px;
 }
+
+.ShelterComment .form-input {
+    width: 100%;
+}
