@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from .models import PetListing
-from .serializers import BasePetListingSerializer, UserPetListingSSerializer
+from .serializers import BasePetListingSerializer, UserPetListingSSerializer, PetListingApplicationsSerializer
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotAllowed
 from rest_framework.exceptions import PermissionDenied
 
@@ -10,6 +10,14 @@ from rest_framework.exceptions import PermissionDenied
 class AllPetListingsList(ListAPIView):
     queryset = PetListing.objects.all()
     serializer_class = BasePetListingSerializer
+
+# Create your views here.
+class AllPetListingApplications(ListAPIView):
+    serializer_class = PetListingApplicationsSerializer
+
+    def get_queryset(self):
+        listing = get_object_or_404(PetListing, id=self.kwargs['pk'])
+        return listing.applications.all()
 
 class UserPetListingsListCreate(ListCreateAPIView):
     #queryset = PetListing.objects.all()

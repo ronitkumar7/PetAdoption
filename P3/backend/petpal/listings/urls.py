@@ -5,6 +5,7 @@ urlpatterns = [
     path('all/', views.AllPetListingsList.as_view()),
     path('', views.UserPetListingsListCreate.as_view()),
     path('<int:pk>/', views.UserPetListingsUpdateDestroy.as_view()),
+    path('<int:pk>/applications/', views.AllPetListingApplications.as_view()),
 
     path('filters/', views.PetListingsSearch.as_view()),
     path('filters/<str:filter1>/<str:keyword>', views.PetListingsSearch.as_view()),

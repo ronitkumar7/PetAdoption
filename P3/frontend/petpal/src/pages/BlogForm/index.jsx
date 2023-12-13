@@ -10,7 +10,7 @@ function NewBlog() {
             method: "POST",
             headers: {
               'Content-Type': 'application/json',
-              "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDY3NjU2LCJpYXQiOjE3MDE5ODEyNTYsImp0aSI6IjJkNDg5NmRjZDMyMTQ2YWM4ODJlZTRlNDMxMDA4OGE1IiwidXNlcl9pZCI6MX0.HG6Q_4mUou5u_fhH2Lbv1EQPy30G970jHdMXOXo_7UA"
+              "Authorization": "Bearer " + localStorage.getItem('apiToken')
             },
             body: JSON.stringify({
                 'title': document.getElementById("title").value,
@@ -21,7 +21,7 @@ function NewBlog() {
           });
     }
 
-    return <>
+    return <div className="blogform">
         <div className="container-sm bg-primary mt-5 mb-5 p-3 rounded">
             <h2 className="text-light sub-header pb-2">Blog creation</h2>
             <div className="mb-3">
@@ -38,7 +38,7 @@ function NewBlog() {
         <div className="mb-5">
             <Link className="text-dark h4" to={'/blogs/personal'}>Return to your blogs</Link>
         </div>
-    </>;
+    </div>;
 }
 
 function ChangeBlog() {
@@ -50,14 +50,21 @@ function ChangeBlog() {
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/blogs/${blogID}/personal/`, {
             headers: {
-            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDY3NjU2LCJpYXQiOjE3MDE5ODEyNTYsImp0aSI6IjJkNDg5NmRjZDMyMTQ2YWM4ODJlZTRlNDMxMDA4OGE1IiwidXNlcl9pZCI6MX0.HG6Q_4mUou5u_fhH2Lbv1EQPy30G970jHdMXOXo_7UA"
+            "Authorization": "Bearer " + localStorage.getItem('apiToken')
             }
         })
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Not Found");
+            }
+        })
         .then(json => {
             setTitle(json.title);
             setBody(json.body);
-        });
+        })
+        .catch(() => navigate('/*'));
     }, []);    
     
     const updateBlog = () => {
@@ -65,7 +72,7 @@ function ChangeBlog() {
             method: "PATCH",
             headers: {
               'Content-Type': 'application/json',
-              "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDY3NjU2LCJpYXQiOjE3MDE5ODEyNTYsImp0aSI6IjJkNDg5NmRjZDMyMTQ2YWM4ODJlZTRlNDMxMDA4OGE1IiwidXNlcl9pZCI6MX0.HG6Q_4mUou5u_fhH2Lbv1EQPy30G970jHdMXOXo_7UA"
+              "Authorization": "Bearer " + localStorage.getItem('apiToken')
             },
             body: JSON.stringify({
                 'title': document.getElementById("title").value,
@@ -76,7 +83,7 @@ function ChangeBlog() {
         });
     }
 
-    return <>
+    return <div className="blogform">
         <div className="container-sm bg-primary mt-5 mb-5 p-3 rounded">
             <h2 className="text-light sub-header pb-2">Modifying Blog: {title}</h2>
             <div className="mb-3">
@@ -93,7 +100,7 @@ function ChangeBlog() {
         <div className="mb-5">
             <Link className="text-dark h4" to={'/blogs/personal'}>Return to your blogs</Link>
         </div>
-    </>;
+    </div>;
 }
 
 export { NewBlog, ChangeBlog };

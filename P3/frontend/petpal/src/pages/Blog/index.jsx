@@ -1,7 +1,9 @@
 import { useState, useEffect} from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import './style.css';
 
 function Blog() {
+    let navigate = useNavigate();
     const [ query, setQuery ] = useState({});
     const [ blog, setBlog ] = useState({});
     const { blogID } = useParams();
@@ -9,17 +11,30 @@ function Blog() {
     
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/blogs/${blogID}/`)
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Not Found");
+            }
+        })
         .then(json => {
             setBlog(json);
-        });
+        })
+        .catch(() => navigate('/*'));
 
         fetch(`http://127.0.0.1:8000/blogs/${blogID}/likes/`, {
             headers: {
-                "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDY3NjU2LCJpYXQiOjE3MDE5ODEyNTYsImp0aSI6IjJkNDg5NmRjZDMyMTQ2YWM4ODJlZTRlNDMxMDA4OGE1IiwidXNlcl9pZCI6MX0.HG6Q_4mUou5u_fhH2Lbv1EQPy30G970jHdMXOXo_7UA"
-              }
+                "Authorization": "Bearer " + localStorage.getItem('apiToken')
+            }
         })
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Not Found");
+            }
+        })
         .then(json => {
             if(json.length === 0) {
                 setLiked({likeID: 0, isLike: 0});
@@ -28,7 +43,8 @@ function Blog() {
                 setLiked({likeID: json[0].id, isLike: 1});
             }
             else {setLiked({likeID: json[0].id, isLike: -1});}
-        });
+        })
+        .catch(() => navigate('/*'));
     }, [query]);
 
     const createLike = isLike => () => {
@@ -36,8 +52,8 @@ function Blog() {
           method: "POST",
           headers: {
             'Content-Type': 'application/json',
-            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDY3NjU2LCJpYXQiOjE3MDE5ODEyNTYsImp0aSI6IjJkNDg5NmRjZDMyMTQ2YWM4ODJlZTRlNDMxMDA4OGE1IiwidXNlcl9pZCI6MX0.HG6Q_4mUou5u_fhH2Lbv1EQPy30G970jHdMXOXo_7UA"
-          },
+            "Authorization": "Bearer " + localStorage.getItem('apiToken')
+        },
           body: JSON.stringify({
               'isLike': isLike,
           })
@@ -49,8 +65,8 @@ function Blog() {
             method: "PATCH",
             headers: {
             'Content-Type': 'application/json',
-            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDY3NjU2LCJpYXQiOjE3MDE5ODEyNTYsImp0aSI6IjJkNDg5NmRjZDMyMTQ2YWM4ODJlZTRlNDMxMDA4OGE1IiwidXNlcl9pZCI6MX0.HG6Q_4mUou5u_fhH2Lbv1EQPy30G970jHdMXOXo_7UA"
-            },
+            "Authorization": "Bearer " + localStorage.getItem('apiToken')
+        },
             body: JSON.stringify({
                 'isLike': isLike,
             })
@@ -61,7 +77,7 @@ function Blog() {
         fetch(`http://127.0.0.1:8000/blogs/likes/${liked.likeID}/`, {
             method: "DELETE",
             headers: {
-            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDY3NjU2LCJpYXQiOjE3MDE5ODEyNTYsImp0aSI6IjJkNDg5NmRjZDMyMTQ2YWM4ODJlZTRlNDMxMDA4OGE1IiwidXNlcl9pZCI6MX0.HG6Q_4mUou5u_fhH2Lbv1EQPy30G970jHdMXOXo_7UA"
+                "Authorization": "Bearer " + localStorage.getItem('apiToken')
             }
         }).then(() => setQuery({...query}));
     }
@@ -92,6 +108,7 @@ function Blog() {
 }
 
 function BlogPersonal() {
+    let navigate = useNavigate();
     const [ query, setQuery ] = useState({});
     const [ blog, setBlog ] = useState({});
     const { blogID } = useParams();
@@ -99,20 +116,27 @@ function BlogPersonal() {
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/blogs/${blogID}/personal/`, {
             headers: {
-                "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDY3NjU2LCJpYXQiOjE3MDE5ODEyNTYsImp0aSI6IjJkNDg5NmRjZDMyMTQ2YWM4ODJlZTRlNDMxMDA4OGE1IiwidXNlcl9pZCI6MX0.HG6Q_4mUou5u_fhH2Lbv1EQPy30G970jHdMXOXo_7UA"
+                "Authorization": "Bearer " + localStorage.getItem('apiToken')
             }
         })
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Not Found");
+            }
+        })
         .then(json => {
             setBlog(json);
-        });
+        })
+        .catch(() => navigate('/*'));
     }, [query]);
 
     const deleteBlog = () => () => {
         fetch(`http://127.0.0.1:8000/blogs/${blogID}/personal/`, {
             method: "DELETE",
             headers: {
-            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDY3NjU2LCJpYXQiOjE3MDE5ODEyNTYsImp0aSI6IjJkNDg5NmRjZDMyMTQ2YWM4ODJlZTRlNDMxMDA4OGE1IiwidXNlcl9pZCI6MX0.HG6Q_4mUou5u_fhH2Lbv1EQPy30G970jHdMXOXo_7UA"
+                "Authorization": "Bearer " + localStorage.getItem('apiToken')
             }
         }).then(() => setQuery({...query}));
     };
