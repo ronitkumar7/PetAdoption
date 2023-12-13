@@ -100,6 +100,7 @@ function PetUpdate({show, setShow, pet, isDetail, applying, setApplying}) {
                         value={petName}
                         onChange={petNameChange}
                         readOnly={isDetail}
+                        required
                     />
                     </Form.Group> 
                     <Form.Group className="mb-3">
@@ -109,6 +110,7 @@ function PetUpdate({show, setShow, pet, isDetail, applying, setApplying}) {
                         value={petBreed}
                         onChange={petBreedChange}
                         readOnly={isDetail}
+                        required
                     />
                     </Form.Group> 
                     <Form.Group className="mb-3">
@@ -118,6 +120,7 @@ function PetUpdate({show, setShow, pet, isDetail, applying, setApplying}) {
                         value={petAge}
                         onChange={petAgeChange}
                         readOnly={isDetail}
+                        required
                     />
                     </Form.Group> 
                     <Form.Group className="mb-3">
@@ -127,6 +130,7 @@ function PetUpdate({show, setShow, pet, isDetail, applying, setApplying}) {
                         value={petGender}
                         onChange={petGenderChange}
                         readOnly={isDetail}
+                        required
                     />
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -136,6 +140,7 @@ function PetUpdate({show, setShow, pet, isDetail, applying, setApplying}) {
                         value={petSize}
                         onChange={petSizeChange}
                         readOnly={isDetail}
+                        required
                     />
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -145,6 +150,7 @@ function PetUpdate({show, setShow, pet, isDetail, applying, setApplying}) {
                         value={petDesc}
                         onChange={petDescChange}
                         readOnly={isDetail}
+                        required
                     />
                     </Form.Group>
                     <Form.Group>

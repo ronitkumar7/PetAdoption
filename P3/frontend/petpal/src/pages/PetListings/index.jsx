@@ -58,11 +58,28 @@ function Players() {
                 />
             </label>
             <label style={{marginRight : "2rem"}}>Search Status: 
-                <input 
-                    value={query.search} 
-                    onChange={event => setSearchParams({...query, statusSearch: event.target.value, page:1})} 
-                />
+            <select
+                value={query.search} 
+                onChange={event => setSearchParams({...query, statusSearch: event.target.value, page:1})} 
+                style={{
+                    paddingLeft: '0.5rem',
+                    paddingRight: '0.5rem',
+                    fontSize: '1rem',
+                    borderRadius: '0.25rem',
+                    border: '1px solid #ccc',
+                    backgroundColor: '#fff',
+                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                    marginLeft: '0.5rem',
+                }}
+                >
+
+                <option value="AVAILABLE">AVAILABLE</option>
+                <option value="PENDING">PENDING</option>
+                <option value="WITHDRAWN">WITHDRAWN</option>
+                <option value="ADOPTED">ADOPTED</option>
+            </select>
             </label>
+
             <label style={{marginRight : "2rem"}}>Search Shelter: 
                 <input 
                     value={query.search} 
@@ -77,7 +94,7 @@ function Players() {
             </label>
         </div> 
         <div className="checkbox-group">
-            <p>Sort By:</p>
+            <p style={{ margin: 0, padding: 0 }}>Sort By:</p>
             <label>Name
                 <input type="checkbox" 
                 onChange={event => { 
@@ -88,7 +105,7 @@ function Players() {
                     }
                 }} />
             </label>
-            <label>Age
+            <label style={{ marginLeft: '1rem' }}>Age
                 <input type="checkbox" 
                 onChange={event => { 
                     if (event.target.checked) { 

@@ -139,7 +139,6 @@ function PetAdd({show, setShow}) {
                     <Form.Control 
                         type="file" 
                         onChange={handleImageChange} 
-                        required
                     />
                     </Form.Group>
                     {petImage && (
