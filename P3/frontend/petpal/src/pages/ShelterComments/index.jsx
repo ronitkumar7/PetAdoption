@@ -124,7 +124,7 @@ function ShelterComments() {
                 <div className="container-sm bg-primary mt-5 mb-5 p-3 rounded">
             <h2 className="text-light sub-header pb-2">Reply</h2>
             <div className="mb-2">
-                <textarea placeholder="Write your reply here." className="form-input rounded" id={`body${comment.id}`} rows="4" />
+                <textarea placeholder="Write your reply here." className="form-input rounded blog-body" id={`body${comment.id}`} rows="4" />
                 <h5 className="text-light sub-header pb-2">Rating (1-5 stars)</h5>
                 <input type="number" id={`rating${comment.id}`}  min="1" max="5" />
             </div>
@@ -146,7 +146,7 @@ function ShelterComments() {
             </div>
             
             <div>
-                <button className="text-light bg-info border-0 rounded" onClick={createComment}>Submit</button>
+                <button className="text-light bg-info border-0 rounded blog-body" onClick={createComment}>Submit</button>
                 <p id="error_create"></p>
             </div>
           
