@@ -76,7 +76,7 @@ function ApplicationAdd({show, setShow}) {
             </Modal.Header>
             {errorDisplay}
             <Modal.Body>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} required>
             <Form.Group className="mb-3">
                 <Form.Label>Applicant</Form.Label>
                 <Form.Control

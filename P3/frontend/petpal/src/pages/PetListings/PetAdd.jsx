@@ -15,7 +15,10 @@ function PetAdd({show, setShow}) {
     }
     const [petAge, setPetAge] = useState("");
     const petAgeChange = (event) => {
-        setPetAge(event.target.value);
+        const inputValue = event.target.value;
+        if (/^[0-9]\d*$/.test(inputValue) || inputValue === '') {
+            setPetAge(inputValue);
+        }
     }
     const [petGender, setPetGender] = useState("");
     const petGenderChange = (event) => {
@@ -44,9 +47,12 @@ function PetAdd({show, setShow}) {
         event.preventDefault();
 
         const formData = new FormData();
-        formData.append('avatar', petImage);
+        if(petImage){
+            formData.append('avatar', petImage);
+        }
         formData.append('status', 'AVAILABLE');
-        formData.append('name', petName);
+        const capitalizedPetName = petName.charAt(0).toUpperCase() + petName.slice(1);
+        formData.append('name', capitalizedPetName);
         formData.append('breed', petBreed);
         formData.append('age', petAge);
         formData.append('gender', petGender);
@@ -80,6 +86,7 @@ function PetAdd({show, setShow}) {
                         autoFocus
                         value={petName}
                         onChange={petNameChange}
+                        required
                     />
                     </Form.Group> 
                     <Form.Group className="mb-3">
@@ -88,6 +95,7 @@ function PetAdd({show, setShow}) {
                         type="text"
                         value={petBreed}
                         onChange={petBreedChange}
+                        required
                     />
                     </Form.Group> 
                     <Form.Group className="mb-3">
@@ -96,6 +104,7 @@ function PetAdd({show, setShow}) {
                         type="number"
                         value={petAge}
                         onChange={petAgeChange}
+                        required
                     />
                     </Form.Group> 
                     <Form.Group className="mb-3">
@@ -104,6 +113,7 @@ function PetAdd({show, setShow}) {
                         type="text"
                         value={petGender}
                         onChange={petGenderChange}
+                        required
                     />
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -112,6 +122,7 @@ function PetAdd({show, setShow}) {
                         type="text"
                         value={petSize}
                         onChange={petSizeChange}
+                        required
                     />
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -120,6 +131,7 @@ function PetAdd({show, setShow}) {
                         type="text"
                         value={petDesc}
                         onChange={petDescChange}
+                        required
                     />
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -127,6 +139,7 @@ function PetAdd({show, setShow}) {
                     <Form.Control 
                         type="file" 
                         onChange={handleImageChange} 
+                        required
                     />
                     </Form.Group>
                     {petImage && (

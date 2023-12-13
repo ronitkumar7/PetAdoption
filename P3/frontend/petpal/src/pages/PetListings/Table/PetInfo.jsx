@@ -4,6 +4,12 @@ import { useState } from "react";
 import ApplicationAdd from './ApplicationAdd';
 
 const PetInfo = ({pet}) => {
+  let isShelter = true;
+  console.log("seeker or shelter", localStorage.getItem("seeker_or_shelter"))
+  if(localStorage.getItem("seeker_or_shelter") == "true"){
+    isShelter = false;
+  }
+  console.log("isShelter", isShelter)
   const [applying, setApplying] = useState(false);
   const [show, setShow] = useState(false);
     const handleShow = () => {
@@ -66,7 +72,7 @@ const PetInfo = ({pet}) => {
               show={show}
               setShow={setShow}
               pet={pet}
-              isDetail={true}
+              isDetail={!isShelter}
               applying={applying}
               setApplying={setApplying}
               />
@@ -75,7 +81,7 @@ const PetInfo = ({pet}) => {
                 setShow={setApplying}
                 pet={pet}
               />
-              <button onClick={handleShow} style={buttonStyle}>Apply</button>
+              <button onClick={handleShow} style={buttonStyle}>{isShelter ? 'Update' : 'Apply'}</button>
           </p>
       </div>
     </div>

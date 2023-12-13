@@ -80,7 +80,7 @@ function ApplicationUpdate({show, setShow, pet, application, isShelter}) {
             </Modal.Header>
             {errorDisplay}
             <Modal.Body>
-               <Form onSubmit={handleSubmit}>
+               <Form onSubmit={handleSubmit} required>
                     <Form.Group className="mb-3">
                     <Form.Label>Pet Name</Form.Label>
                     <Form.Control

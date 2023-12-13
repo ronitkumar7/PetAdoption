@@ -16,7 +16,10 @@ function PetUpdate({show, setShow, pet, isDetail, applying, setApplying}) {
     }
     const [petAge, setPetAge] = useState(pet.age);
     const petAgeChange = (event) => {
-        setPetAge(event.target.value);
+        const inputValue = event.target.value;
+        if (/^[0-9]\d*$/.test(inputValue) || inputValue === '') {
+            setPetAge(inputValue);
+        }
     }
     const [petGender, setPetGender] = useState(pet.gender);
     const petGenderChange = (event) => {
@@ -58,7 +61,8 @@ function PetUpdate({show, setShow, pet, isDetail, applying, setApplying}) {
         const formData = new FormData();
         (petImage && formData.append('avatar', petImage));
         formData.append('status', petStatus);
-        formData.append('name', petName);
+        const capitalizedPetName = petName.charAt(0).toUpperCase() + petName.slice(1);
+        formData.append('name', capitalizedPetName);
         formData.append('breed', petBreed);
         formData.append('age', petAge);
         formData.append('gender', petGender);

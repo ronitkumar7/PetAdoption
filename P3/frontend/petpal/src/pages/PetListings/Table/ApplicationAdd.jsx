@@ -66,7 +66,7 @@ function ApplicationAdd({show, setShow, pet}) {
     }
   
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} required>
             <Modal.Header closeButton>
             <Modal.Title>{"Apply for a Pet"}</Modal.Title>
             </Modal.Header>

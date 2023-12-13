@@ -2,24 +2,29 @@ import React from 'react';
 import ApplicationUpdate from './ApplicationUpdate';
 import DisplayTime from './DisplayTime';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PetInfo = ({pet, application}) => {
+  let isShelter = true;
+  if(localStorage.getItem("seeker_or_shelter") == "true"){
+    isShelter = false;
+  }
   const [show, setShow] = useState(false);
-    const handleShow = () => {
-        setShow(true);
-    };
+  let navigate = useNavigate();
+  const handleShow = () => {
+      setShow(true);
+  };
 
   const containerStyle = {
     display: 'flex',
   };
 
   const div1Style = {
-    flex: 1,
-    paddingRight: '1rem',
+    flex: 3,
   };
 
   const div2Style = {
-    flex: 1,
+    flex: 2,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -33,6 +38,9 @@ const PetInfo = ({pet, application}) => {
     padding: '0.375rem 0.75rem',
     borderRadius: '0.25rem', 
     cursor: 'pointer', 
+  };
+  const viewComments = () => {
+    navigate(`/application/${application.id}/comments`);
   };
   if (!pet){
     return <></>
@@ -74,11 +82,13 @@ const PetInfo = ({pet, application}) => {
               setShow={setShow}
               pet={pet}
               application={application}
-              isShelter={true}
+              isShelter={isShelter}
               />
-
               <button onClick={handleShow} style={buttonStyle}>Update</button>
+              <br></br>
+              <button style={buttonStyle} onClick={viewComments}>Comments</button>
           </p>
+
       </div>
     </div>
     <h4>{`status: ${application.status}`}</h4>

@@ -6,7 +6,7 @@ function Table({pets}) {
     // Check if pets is defined and not null
     if (!pets || pets.length === 0) {
         // Handle the case where pets is undefined or an empty array
-        return <tbody>No pets available</tbody>;
+        return <tbody>No applications available</tbody>;
     }
     return <table>
     <tbody>
