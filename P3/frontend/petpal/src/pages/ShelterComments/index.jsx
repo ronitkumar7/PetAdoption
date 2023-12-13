@@ -68,15 +68,14 @@ function ShelterComments() {
                   'link': `http://127.0.0.1:3000/shelter/${shelId}/comments`
               })
             })
-            .then(() => response.json());
+            .then(() => {
+              document.location.reload();
+            });
       }else{
           throw new Error("hi");
       }
         })
-        
-        .then(() => {
-          document.location.reload();
-        }).catch(() => {
+        .catch(() => {
           const error_id = `error${commentId}`;
           document.getElementById(error_id).innerText = "Comment Reply failed."
           
@@ -112,15 +111,14 @@ function ShelterComments() {
                 'link': `http://127.0.0.1:3000/shelter/${shelId}/comments`
             })
           })
-          .then(() => response.json());
+          .then(() => {
+            document.location.reload();
+          });
     }else{
         throw new Error("hi");
     }
       })
-      
-      .then(() => {
-        document.location.reload();
-      }).catch(() => document.getElementById("error_create").innerText = "Comment Creation failed.");
+      .catch(() => document.getElementById("error_create").innerText = "Comment Creation failed.");
 }
 
 
