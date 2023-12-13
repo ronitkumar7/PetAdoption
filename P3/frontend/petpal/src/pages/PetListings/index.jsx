@@ -1,41 +1,127 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Table from "./Table";
+import { Row } from 'react-bootstrap';
+import { useSearchParams } from "react-router-dom";
+import PetAdd from './PetAdd';
 
 function Players() {
-    const [query, setQuery] = useState({search: "", page: 1});
+    const [ searchParams, setSearchParams ] = useSearchParams();
     const [totalPages, setTotalPages] = useState(1);
     const [ players, setPlayers ] = useState([]);
 
+    const [show, setShow] = useState(false);
+    const handleShow = () => {
+        setShow(true);
+    };
+
+    const buttonStyle = {
+        marginTop: '10px',
+        backgroundColor: '#0d6efd',
+        borderColor: '#0d6efd',
+        color: '#ffffff', 
+        padding: '0.375rem 0.75rem',
+        borderRadius: '0.25rem', 
+        cursor: 'pointer', 
+      };
+
+    const query = useMemo(() => ({
+        breedSearch : searchParams.get("breedSearch") ?? "",
+        statusSearch : searchParams.get("statusSearch") ?? "",
+        shelterSearch : searchParams.get("shelterSearch") ?? "",
+        genderSearch : searchParams.get("genderSearch") ?? "",
+        page : parseInt(searchParams.get("page") ?? 1),
+        nameSort : searchParams.getAll("nameSort") ?? "",
+        ageSort : searchParams.getAll("ageSort") ?? "",
+    }), [searchParams]);
+
     useEffect(() => {
-        const {search, page} = query;
-        fetch(`https://www.balldontlie.io/api/v1/players?search=${search}&page=${page}`)
+        const {breedSearch, statusSearch, shelterSearch, genderSearch, page, nameSort, ageSort} = query;
+        const offset = (page - 1) * 2
+        fetch(`http://127.0.0.1:8000/listings/filters/?sort1=${ageSort}&sort2=${nameSort}&fKeyword1=${breedSearch}&fKeyword1=${breedSearch}&fKeyword1=${breedSearch}&fKeyword2=${statusSearch}&fKeyword3=${shelterSearch}&fKeyword4=${genderSearch}&limit=2&filter1=breed&filter2=status&filter3=shelter&filter4=gender&offset=${offset}`)
         .then(response => response.json())
         .then(json => {
-            setPlayers(json.data);
-            setTotalPages(json.meta.total_pages);
+            setPlayers(json.results)
+            const newTotal = Math.max(Math.ceil(json.count / 2), 1)
+            setTotalPages(newTotal)
+            if(page > newTotal){
+                setSearchParams({...query, page: newTotal})
+            }
         });
     }, [query]);
 
     return <>
-        <p>
-            <label>Search Player Name: 
+        <div>
+            <label style={{marginRight : "2rem"}}>Search Breed: 
                 <input 
                     value={query.search} 
-                    onChange={event => setQuery({search: event.target.value, page: 1})} 
+                    onChange={event => setSearchParams({...query, breedSearch: event.target.value, page:1})} 
                 />
             </label>
-        </p>  
-        <Table players={players} />
+            <label style={{marginRight : "2rem"}}>Search Status: 
+                <input 
+                    value={query.search} 
+                    onChange={event => setSearchParams({...query, statusSearch: event.target.value, page:1})} 
+                />
+            </label>
+            <label style={{marginRight : "2rem"}}>Search Shelter: 
+                <input 
+                    value={query.search} 
+                    onChange={event => setSearchParams({...query, shelterSearch: event.target.value, page:1})} 
+                />
+            </label>
+            <label>Search Gender: 
+                <input 
+                    value={query.search} 
+                    onChange={event => setSearchParams({...query, genderSearch: event.target.value, page:1})} 
+                />
+            </label>
+        </div> 
+        <div className="checkbox-group">
+            <p>Sort By:</p>
+            <label>Name
+                <input type="checkbox" 
+                onChange={event => { 
+                    if (event.target.checked) { 
+                        setSearchParams({...query, nameSort:"name", page: 1});
+                    } else {
+                        setSearchParams({...query, nameSort:"", page: 1});
+                    }
+                }} />
+            </label>
+            <label>Age
+                <input type="checkbox" 
+                onChange={event => { 
+                    if (event.target.checked) { 
+                        setSearchParams({...query, ageSort:"age", page: 1});
+                    } else {
+                        setSearchParams({...query, ageSort:"", page: 1});
+                    }
+                }}/>
+                
+            </label>
+        </div>
+        <p>
+            <PetAdd 
+            show={show}
+            setShow={setShow}
+            />
+
+            <button onClick={handleShow} style={buttonStyle}>Add a Pet</button>
+        </p>
+        <div style={{   display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',}}>
+            <Table pets={players} striped bordered responsive/>
+        </div>
         <p>
         { query.page < totalPages
-          ? <button onClick={() => setQuery({...query, page: query.page + 1})}>Next</button>
+          ? <button onClick={() => setSearchParams({...query, page: query.page + 1})} style={buttonStyle}>Next</button>
           : <></> }
         { query.page > 1 
-          ? <button onClick={() => setQuery({...query, page: query.page - 1})}>Previous</button>
+          ? <button onClick={() => setSearchParams({...query, page: query.page - 1})} style={buttonStyle}>Previous</button>
           : <></> }
         </p>
-        <p>Page {query.page} out of {totalPages}.</p>
+        <p className="pb-5">Page {query.page} out of {totalPages}.</p>
     </>;
 }
-
 export default Players;

@@ -41,6 +41,9 @@ const Layout = () => {
                         <Link to="/petListings" className="nav-link text-light">Pet Listings</Link>
                     </li>
                     <li className="nav-item">
+                        <Link to="/Applications" className="nav-link text-light">Applications</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link to="/Notifications" className="nav-link text-light">Notifications</Link>
                     </li>
                     <li className="nav-item">
@@ -58,7 +61,7 @@ const Layout = () => {
                 </ul>
             </nav>
         </header>
-        <main className="p-5">
+        <main className="p-3">
             <h1 className="text-dark text-center m-0">PetPal</h1>
             <Outlet />
         </main>

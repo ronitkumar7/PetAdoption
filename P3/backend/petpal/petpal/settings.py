@@ -65,6 +65,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
 ]
 
+CORS_ALLOW_HEADERS = [
+    'access-control-allow-origin',
+    'authorization',
+    'content-type',
+]
+
 ROOT_URLCONF = 'petpal.urls'
 
 TEMPLATES = [

@@ -26,8 +26,9 @@ class UserPetListingsListCreate(ListCreateAPIView):
 class UserPetListingsUpdateDestroy(RetrieveUpdateDestroyAPIView):
     serializer_class = UserPetListingSSerializer
     def get_object(self):
-        if self.request.user.seeker_or_shelter == True: raise PermissionDenied("You are not authorized to access this resource")
         listing = get_object_or_404(PetListing, id=self.kwargs['pk'])
+        if self.request.method == 'GET': return listing
+        if self.request.user.seeker_or_shelter == True: raise PermissionDenied("You are not authorized to access this resource")
         if listing.shelter == self.request.user: return listing
         else: raise PermissionDenied("This Listing Does Not Belong To You")
     

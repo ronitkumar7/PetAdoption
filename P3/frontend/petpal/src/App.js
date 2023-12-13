@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PetListings from './pages/PetListings';
+import Applications from './pages/Applications';
 import Layout from './components/Layout';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -30,6 +31,7 @@ function App() {
           <Route path="profile/:profID" element={<OutsideProfile />} />
           <Route path="shelters" element={<Shelters />} />
           <Route path="petListings" element={<PetListings />} />
+          <Route path="Applications" element={<Applications />} />
           <Route path="Notifications" element={<Notifications />} />
           <Route path="teams/:teamID" element={<Team />} />
           <Route path="blogs/personal" element={<BlogsPersonal />} />

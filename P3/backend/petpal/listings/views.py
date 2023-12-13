@@ -34,6 +34,9 @@ class UserPetListingsListCreate(ListCreateAPIView):
 class UserPetListingsUpdateDestroy(RetrieveUpdateDestroyAPIView):
     serializer_class = UserPetListingSSerializer
     def get_object(self):
+        if self.request.method == 'GET':
+            # Allow GET requests without permission checks
+            return get_object_or_404(PetListing, id=self.kwargs['pk'])
         if self.request.user.seeker_or_shelter == True: raise PermissionDenied("You are not authorized to access this resource")
         listing = get_object_or_404(PetListing, id=self.kwargs['pk'])
         if listing.shelter == self.request.user: return listing
@@ -59,12 +62,20 @@ class PetListingsSearch(ListAPIView):
             keyword = pair[1]
             if filter:
                 if filter.lower() in ["shelter", "status", "breed", "gender",]:
-                    if filter.lower() == "shelter": queryset = queryset.filter(shelter__username__icontains=keyword)
-                    elif filter.lower() == "status": 
-                        queryset = queryset.filter(status=keyword)
-                        statusNotFiltered = False
-                    elif filter.lower() == "breed": queryset = queryset.filter(breed__icontains=keyword)
-                    elif filter.lower() == "color": queryset = queryset.filter(gender=keyword)
+                    if filter.lower() == "shelter": 
+                        if keyword:
+                            queryset = queryset.filter(shelter__username__icontains=keyword)
+                    elif filter.lower() == "status":
+                        if keyword: 
+                            queryset = queryset.filter(status=keyword)
+                            statusNotFiltered = False
+                    elif filter.lower() == "breed": 
+                        if keyword:
+                            #check to see if the keyword isn't an empty string
+                            queryset = queryset.filter(breed__icontains=keyword)
+                    elif filter.lower() == "gender": 
+                        if keyword:
+                            queryset = queryset.filter(gender=keyword)
                 else:
                     raise PermissionDenied(f"Invalid Filter, must be one of: shelter, status, breed, gender")
         if statusNotFiltered: queryset = queryset.filter(status="AVAILABLE")
