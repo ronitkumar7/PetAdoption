@@ -1,7 +1,8 @@
-import { Outlet, Link, useLocation } from "react-router-dom"
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom"
 import './style.css';
 
 const Layout = () => {
+    let navigate = useNavigate();
     const location = useLocation();
     const url = location.pathname;
     const today = new Date();
@@ -30,6 +31,14 @@ const Layout = () => {
             semester = "Unknown";
     }
 
+    const logout = () => {
+        localStorage.setItem("apiToken", "");
+        localStorage.setItem("userName", "");
+        localStorage.setItem("apiId", 0);
+        localStorage.setItem("seeker_or_shelter", false);
+        navigate('/login');
+    }
+
     return <>
         <header>
             <nav className="navbar navbar-expand-sm bg-primary">
@@ -54,6 +63,9 @@ const Layout = () => {
                     </li>
                     <li className="nav-item">
                         <Link to="/login" className="nav-link text-light">Login</Link>
+                    </li>
+                    <li className="nav-item">
+                        <button onClick={logout} className="nav-link text-light">Logout</button>
                     </li>
                 </ul>
             </nav>
