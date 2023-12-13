@@ -1,13 +1,13 @@
-.blog-body {
+.appComment .blog-body {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-.hidden{
+.appComment .hidden{
     display: none;
 }
 
-.present{
+.appComment .present{
     display:flexbox;
     padding: 5px;
 }

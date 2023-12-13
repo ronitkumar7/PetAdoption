@@ -1,18 +1,18 @@
-.hidden{
+.UpdateProfile .hidden{
     display: none;
 }
 
-.present{
+.UpdateProfile .present{
     display:flexbox;
     padding: 5px;
 }
-.h5{
+.UpdateProfile  .h5{
     padding:5%;
 }
-p{
+.UpdateProfile p{
     color:red;
 }
-img{
+.UpdateProfile img{
     width: 100%;
     height:100%;
 }

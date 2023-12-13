@@ -59,7 +59,7 @@ function Login () {
 };
         
     
-        return <>
+        return <div className="Login">
     
     <div className="container mt-1 bg-primary mt-5 mb-5 p-3 rounded">
         <h2 className="text-light sub-header pb-2">Login</h2>
@@ -68,7 +68,6 @@ function Login () {
 
         <div className="mb-3">
         <h5 className="text-light sub-header pb-2">Username</h5>
-        <label for="username" className="mb-3 white">  </label>
             <input type="text-center" className="m-0 form-input border-0 rounded" placeholder="Enter your username" id="username" />
         </div>
 
@@ -85,7 +84,7 @@ function Login () {
             <p id="error_login"></p>
         </div>
     </div>
-    </>;
+    </div>;
 
 }
 

@@ -1,14 +1,14 @@
-.hidden{
+.Register .hidden{
     display: none;
 }
 
-.present{
+.Register .present{
     display:flexbox;
     padding: 5px;
 }
-.h5{
+.Register .h5{
     padding:5%;
 }
-p{
+.Register p{
     color:red;
 }

@@ -36,7 +36,7 @@ function Shelters() {
         .catch(() => navigate('/*'));
     }, [ query, navigate ]);
 
-    return <>
+    return <div className="Shelter">
         <div className="container-sm bg-primary mt-5 mb-5 p-3 rounded">
           <h2 className="text-light sub-header">Shelters</h2>
 
@@ -61,7 +61,7 @@ function Shelters() {
             : <></> }
           </p>
         </div>
-    </>;
+    </div>;
 }
 
 

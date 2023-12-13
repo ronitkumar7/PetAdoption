@@ -1,14 +1,14 @@
-.hidden{
+.Login .hidden{
     display: none;
 }
 
-.present{
+.Login .present{
     display:flexbox;
     padding: 5px;
 }
-.h5{
+.Login .h5{
     padding:5%;
 }
-p{
+.Login p{
     color:red;
 }

@@ -109,7 +109,7 @@ function Register () {
     };
     
     
-        return <>
+        return <div className="Register">
     
     <div className="container mt-1 bg-primary mt-5 mb-5 p-3 rounded">
         <h2 className="text-light sub-header pb-2">Sign Up</h2>
@@ -168,7 +168,7 @@ function Register () {
         </div>
 
         <div className={seeker}>
-        <h5 className="text-light sub-header pb-2">Preferences</h5>
+        <h5 className="text-light sub-header pb-2">Preferences (To receive no notifications, enter "None")</h5>
             <input type="text-center" className="m-0 form-input border-0 rounded" placeholder="Enter your preferences" id="preferences" />
         </div>
 
@@ -188,56 +188,8 @@ function Register () {
             <p id="error_submit"></p>
         </div>
     </div>
-    </>;
+    </div>;
 
-    // return <>
-
-    //         <div>
-    //             <button className="text-light bg-info border-0 rounded" onClick={CreateSeeker}>I'm a Seeker</button>
-    //         </div>
-
-    //         <div>
-    //             <button className="text-light bg-info border-0 rounded" onClick={CreateSeeker}>I'm a Shelter Owner</button>
-    //         </div>
-    //         </>;
-
-    //     <div className="container mt-1 bg-primary mt-5 mb-5 p-3 rounded">
-    //         <h2 className="text-light sub-header pb-2">Sign Up</h2>
-    //         <div className="mb-3">
-    //             <input type="text" className="m-0 form-input border-0 rounded" placeholder="Enter your first name" id="first_name" />
-    //         </div>
-    //         <div className="mb-3">
-    //             <input type="text" className="m-0 form-input border-0 rounded" placeholder="Enter your last name" id="last_name" />
-    //         </div>
-    //         <div className="mb-3">
-    //         <label for="email" className="mb-3 white"> Email </label>
-    //             <input type="text-center" className="m-0 form-input border-0 rounded" placeholder="Enter your username" id="username" />
-    //         </div>
-    //         <div className="mb-3">
-    //             <input type="password" className="m-0 form-input border-0 rounded" placeholder="Enter your password" id="password" />
-    //         </div>
-    //         <div className="mb-3">
-    //             <input type="email" className="m-0 form-input border-0 rounded" placeholder="Enter your email" id="email" />
-    //         </div>
-    //         <div>
-    //         <input type="radio" class="form-check-input info-input FCI" id="radio1" name="optradio" value="option1" />
-    //         <label class="form-check-label info-label" for="radio1" id="radio1-label1">I am a pet seeker</label>
-    //         </div>
-    //         <div class="mt-2">
-    //         <input type="radio" class="form-check-input info-input FCI" id="radio2" name="optradio" value="option2" />
-    //         <label class="form-check-label info-label" for="radio2" id="radio1-label2">I am the owner of a pet shelter</label>
-    //         </div>
-    //         {/* <div className="mb-2">
-    //             <input type="email" className="m-0 form-input border-0 rounded" placeholder="Enter your email" id="email" />
-    //         </div> */}
-    //         {/* <div className="mb-3">
-    //             <input type="text" className="m-0 form-input border-0 rounded" placeholder="Enter your email" id="email" />
-    //         </div> */}
-    //         <div>
-    //             <button className="text-light bg-info border-0 rounded" onClick={createUser}>Sign Up</button>
-    //         </div>
-    //     </div>
-    // </>;
 }
 
 

@@ -78,7 +78,7 @@ function OutsideProfile () {
 const viewComments = () => {
     navigate(`/shelter/${profID}/comments`);
 };
-    return <>
+    return <div className="outsideProf">
     
     <div className="container mt-1 bg-primary mt-5 mb-5 p-3 rounded">
         <h2 className="text-light sub-header pb-2">Profile</h2>
@@ -139,7 +139,7 @@ const viewComments = () => {
     </div>
 
 
-    </>;
+    </div>;
 
 
 }

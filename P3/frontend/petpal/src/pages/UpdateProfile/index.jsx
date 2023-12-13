@@ -168,7 +168,7 @@ function UpdateProfile () {
 
     };
     
-    return <>
+    return <div className="UpdateProfile">
     
     <div className="container mt-1 bg-primary mt-5 mb-5 p-3 rounded">
         <h2 className="text-light sub-header pb-2">Update Profile</h2>
@@ -185,7 +185,7 @@ function UpdateProfile () {
 
         <div className="mb-3">
         <h5 className="text-light sub-header pb-2">Username</h5>
-            <input type="text-center" value={userName} className="m-0 form-input border-0 rounded" placeholder="Enter your username" id="username" />
+            <input type="text-center" value={userName} className="m-0 form-input border-0 rounded" placeholder="Enter your username" id="username" readOnly/>
         </div>
 
         <div className="mb-3">
@@ -216,7 +216,7 @@ function UpdateProfile () {
         </div>
 
         <div className={seeker}>
-        <h5 className="text-light sub-header pb-2">Preferences</h5>
+        <h5 className="text-light sub-header pb-2">Preferences (To receive no notifications, enter "None")</h5>
             <input type="text-center" defaultValue ={preferences} className="m-0 form-input border-0 rounded" placeholder="Enter your preferences" id="preferences" />
         </div>
 
@@ -241,7 +241,7 @@ function UpdateProfile () {
             <p id="error_delete"></p>
         </div>
     </div>
-    </>;
+    </div>;
 
 
 }

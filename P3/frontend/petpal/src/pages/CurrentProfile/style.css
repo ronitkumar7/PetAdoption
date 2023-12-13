@@ -1,18 +1,18 @@
-.hidden{
+.CurrProfile .hidden{
     display: none;
 }
 
-.present{
+.CurrProfile .present{
     display:flexbox;
     padding: 5px;
 }
-.h5{
+.CurrProfile .h5{
     padding:5%;
 }
-p{
+.CurrProfile p{
     color:red;
 }
-img{
+.CurrProfile img{
     width: 100%;
     height:100%;
 }

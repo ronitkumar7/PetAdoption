@@ -1,5 +1,4 @@
 import { useState, useEffect} from "react";
-import { Link } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 import './style.css';
 
@@ -103,7 +102,7 @@ function ShelterComments() {
 
 
 
-    return <>
+    return <div className="ShelterComment">
         <div className="container-sm bg-primary mt-5 mb-5 p-3 rounded">
           <h2 className="text-light sub-header">Comments</h2>
 
@@ -160,7 +159,7 @@ function ShelterComments() {
             : <></> }
           </p>
         </div>
-    </>;
+    </div>;
 }
 
 

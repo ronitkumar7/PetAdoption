@@ -1,18 +1,18 @@
-.hidden{
+.outsideProf .hidden{
     display: none;
 }
 
-.present{
+.outsideProf .present{
     display:flexbox;
     padding: 5px;
 }
-.h5{
+.outsideProf .h5{
     padding:5%;
 }
-p{
+.outsideProf p{
     color:red;
 }
-img{
+.outsideProf img{
     width: 100%;
     height:100%;
 }

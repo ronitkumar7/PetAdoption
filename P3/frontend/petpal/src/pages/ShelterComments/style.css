@@ -1,13 +1,13 @@
-.blog-body {
+.ShelterComment .blog-body {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-.hidden{
+.ShelterComment .hidden{
     display: none;
 }
 
-.present{
+.ShelterComment .present{
     display:flexbox;
     padding: 5px;
 }

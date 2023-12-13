@@ -50,7 +50,7 @@ function CurrentProfile () {
         }
     })
     .catch(() => navigate('/*'))
-}, []);
+}, [navigate]);
 
     const editUser = () => {
         navigate('/updateProfile');
@@ -60,24 +60,24 @@ function CurrentProfile () {
         navigate(`/shelter/${localStorage.getItem("userId")}/comments`);
     };
     
-    return <>
+    return <div className="CurrProfile">
     
     <div className="container mt-1 bg-primary mt-5 mb-5 p-3 rounded">
         <h2 className="text-light sub-header pb-2">Profile</h2>
 
         <div className="mb-3">
         <h5 className="text-light sub-header pb-2">First Name</h5>
-            <input type="text" value={firstName} className="m-0 form-input border-0 rounded" placeholder="Enter your first name" id="first_name" />
+            <input type="text" value={firstName} className="m-0 form-input border-0 rounded" placeholder="Enter your first name" id="first_name" readOnly/>
         </div>
 
         <div className="mb-3">
         <h5 className="text-light sub-header pb-2">Last Name</h5>
-            <input type="text" value={lastName} className="m-0 form-input border-0 rounded" placeholder="Enter your last name" id="last_name" />
+            <input type="text" value={lastName} className="m-0 form-input border-0 rounded" placeholder="Enter your last name" id="last_name" readOnly/>
         </div>
 
         <div className="mb-3">
         <h5 className="text-light sub-header pb-2">Username</h5>
-            <input type="text-center" value={localStorage.getItem("userName")} className="m-0 form-input border-0 rounded" placeholder="Enter your username" id="username" />
+            <input type="text-center" value={localStorage.getItem("userName")} className="m-0 form-input border-0 rounded" placeholder="Enter your username" id="username" readOnly/>
         </div>
 
         <div className="mb-3">
@@ -88,17 +88,17 @@ function CurrentProfile () {
 
         <div className="mb-3">
             <h5 className="text-light sub-header pb-2">Email</h5>
-            <input type="email" value={email} className="m-0 form-input border-0 rounded" placeholder="Enter your email" id="email" />
+            <input type="email" value={email} className="m-0 form-input border-0 rounded" placeholder="Enter your email" id="email" readOnly/>
         </div>
 
         <div className="mb-3">
         <h5 className="text-light sub-header pb-2">Phone Number</h5>
-            <input type="text-center" value={phone_num} className="m-0 form-input border-0 rounded" placeholder="Enter your phone number" id="phone_number" />
+            <input type="text-center" value={phone_num} className="m-0 form-input border-0 rounded" placeholder="Enter your phone number" id="phone_number" readOnly/>
         </div>
 
         <div className="mb-3">
         <h5 className="text-light sub-header pb-2">Location</h5>
-            <input type="text-center" value={location} className="m-0 form-input border-0 rounded" placeholder="Enter your location" id="location" />
+            <input type="text-center" value={location} className="m-0 form-input border-0 rounded" placeholder="Enter your location" id="location" readOnly/>
         </div>
 
         <div className="mb-3">
@@ -109,17 +109,17 @@ function CurrentProfile () {
 
         <div className={seeker}>
         <h5 className="text-light sub-header pb-2">Preferences</h5>
-            <input type="text-center" value ={preferences} className="m-0 form-input border-0 rounded" placeholder="Enter your preferences" id="preferences" />
+            <input type="text-center" value ={preferences} className="m-0 form-input border-0 rounded" placeholder="Enter your preferences" id="preferences" readOnly/>
         </div>
 
         <div className={shelter}>
         <h5 className="text-light sub-header pb-2">Mission Statement</h5>
-            <input type="text-center" value={mission} className="m-0 form-input border-0 rounded" placeholder="Enter your mission statement" id="mission_statement" />
+            <input type="text-center" value={mission} className="m-0 form-input border-0 rounded" placeholder="Enter your mission statement" id="mission_statement" readOnly/>
         </div>
 
         <div className={shelter}>
         <h5 className="text-light sub-header pb-2">Shelter Name</h5>
-        <input type="text-center" value={shelter_name} className="m-0 form-input border-0 rounded" placeholder="Enter your shelter name" id="shelter_name" />
+        <input type="text-center" value={shelter_name} className="m-0 form-input border-0 rounded" placeholder="Enter your shelter name" id="shelter_name" readOnly/>
         </div>
 
 
@@ -136,7 +136,7 @@ function CurrentProfile () {
     </div>
 
 
-    </>;
+    </div>;
 
 
 }
